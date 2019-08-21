@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Upload Image</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+* {
+box-sizing: border-box;
+}
+
+.column {
+float: left;
+width: 25%;
+padding: 5px;
+}
+.column1 {
+float: left;
+width: 75%;
+padding: 50px;
+}
+.column6 {
+float: left;
+width: 66.66%;
+padding: 5px;
+}
+/* Clearfix (clear floats) */
+.row::after {
+content: "";
+clear: both;
+display: table;
+
+}
+.row1::after {
+content: "";
+clear: both;	
+display: table;
+
+}
+.t {
+border-style: dotted;
+border-color: black;
+padding: 5px;
+}
+
+.t1 {
+border-style: solid;
+border-color: #18A7B5;
+padding: 5px;
+}
+
+figcaption {
+border-style: solid;
+border-width: 10px;
+text-align: center;
+padding: 10px;
+}
+
+
+.column2 {
+float: left;
+width: 50%;
+padding: 5px;
+}
+
+.column5 {
+float: left;
+width: 50%;
+padding: 5px;
+}
+
+.column4 {
+float: left;
+width: 50%;
+padding: 5px;
+padding-left:50px;
+}
+.column3 {
+float: right;
+width: 33.33%;
+padding: 5px;
+}
+
+.t2 {
+border-style: solid;
+border-color: gray;
+border-width: thin;
+padding: 5px;
+}
+
+</style>
+</head>
+<body >
+<div class="row t2">
+<div class = "column2">
+<img src="static/logo/harman_logo.png" alt="logo" style="width:100%px;height:100%;">
+</div>
+<div class = "column3">
+<img src="static/logo/title.png" alt="title" style="width:100%px;height:100%;" ALIGN="right">
+</div>
+</div>
+
+<br>
+
+<div class="row t" style="background-color:lightblue" >
+
+<div class="column2">
+<h1>Upload new File</h1>
+<form method=post enctype=multipart/form-data>
+<p><input type=file name=file></p>
+
+<input type=submit name="action" value="Submit" >
+
+</form>
+
+</div>
+
+<div class="column2">
+<h1 align="right">Enter Path of Folder</h1>
+<form method=post enctype=multipart/form-data>
+
+<input type="text" style="float:right" name="path" size="40" >
+<br><br>
+<input type=submit name="action" value="Run All" style="float:right">
+<!-- <input type=submit name="action" value="Show" style="float:right">700px -->
+</form>
+
+</div>
+
+</div>
+    <h1>Result: </h1>
+    {% if time %}
+	<p style="color:rgb(0, 128, 28);">Version 4.0</p>
+     <p style="color:rgb(0, 128, 28);">Time Taken : {{time}} sec</p>
+{% endif %}
+{% if time_all %}
+    <p style="color:rgb(0, 128, 28);">Version 4.0</p>
+     <p style="color:rgb(0, 128, 28);"> Time Taken :{{time_all}} sec</p>
+{% endif %}
+    {% if msg1 %}
+    <h1 style="color:rgb(0, 128, 28);"> {{msg1}}</h1>
+    {% endif %}
+    {% if img_src %}
+    
+      
+      <div class="row">
+      <div class="column5">
+      <figcaption style="border-color: #367588;"><h2> Input Image</h2></figcaption>
+	  <br>
+      <img src="{{ img_src }}" alt="src" style="width:100%;height:100%;">
+      </div>
+      <div class="column4">
+      <figcaption style="border-color: #18A7B5;"> <h2>Cropped Output</h2></figcaption>
+	  <br>
+      <img src="{{ img_crop }}" alt="crop" style="width:100%;height:1000px;" >
+      </div>
+     
+      </div>
+      
+      
+      
+      
+      
+      
+      
+    {% endif %}
+    
+    {% if extracted_text %}
+    <div class  = "t1">
+      <p> The extracted text from the image is: 
+              <b>{% for para in extracted_text %}
+              <p>{{para}}</p>
+          {% endfor %} </b></p>
+      
+      </div>
+  
+    {% else %}
+      The extracted text will be displayed here
+    {% endif %}
+  </body>
+</html>
+    
